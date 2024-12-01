@@ -47,14 +47,13 @@ public class AccountService {
                 .customer(customerEntity)
                 .build();
 
-        customerEntity = customerRepository.save(customerEntity);
-        addressEntity = addressRepository.save(addressEntity);
-
         Account accountEntity = Account.builder()
                 .customer(customerEntity)
                 .status(AccountStatusEnum.ENABLED)
                 .build();
 
+        customerEntity = customerRepository.save(customerEntity);
+        addressEntity = addressRepository.save(addressEntity);
         accountEntity = accountReposity.save(accountEntity);
 
         CreatedAccount createdAccount = new CreatedAccount(accountEntity.getAccountNumber(),

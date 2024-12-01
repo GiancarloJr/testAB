@@ -76,13 +76,18 @@ public class CardService {
 
         return returnCardsAccount;
     }
+
     public CreatedCard reissueCard(String cpf) {
 
         Customer customerEntity = customerRepository.findByCpf(cpf).orElseThrow(
                 () -> new NotFoundException(ExceptionMessages.CUSTOMER_NOT_FOUND)
         );
 
-        Card cardEntity = customerEntity.getAccount().getCards().stream().filter(x -> x.getType().equals(CardType.PHYSICAL)).findFirst().get();
+        Card cardEntity = customerEntity.getAccount()
+                    .getCards()
+                        .stream()
+                            .filter(x -> x.getType().equals(CardType.PHYSICAL)).findAny().
+                orElseThrow(() -> new NotFoundException(ExceptionMessages.CARD_NOT_FOUND));
 
         cardEntity.setCardNumber(CardUtils.generateCardNumber());
         cardEntity.setStatus(CardStatusEnum.DISABLED);
