@@ -6,7 +6,6 @@ import br.com.altbank.test_java.domain.account.model.enums.AccountStatusEnum;
 import br.com.altbank.test_java.domain.account.repository.AccountReposity;
 import br.com.altbank.test_java.domain.adress.model.Address;
 import br.com.altbank.test_java.domain.adress.repository.AddressRepository;
-import br.com.altbank.test_java.domain.card.model.enums.CardStatusEnum;
 import br.com.altbank.test_java.domain.customer.model.Customer;
 import br.com.altbank.test_java.domain.customer.repository.CustomerRepository;
 import br.com.altbank.test_java.domain.web.errors.exceptions.DataIntegrityException;
