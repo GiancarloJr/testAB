@@ -1,13 +1,13 @@
 package br.com.altbank.test_java.domain.web.errors.validationMessage;
 
 public interface ExceptionMessages {
-    String CPF_INVALID = "O CPF invalido";
-     String CPF_NOT_NULL = "O CPF não pode ser nulo.";
-     String NAME_NOT_NULL = "O nome não pode ser nulo ou vazio.";
-     String EMAIL_INVALID = "Formato de e-mail inválido.";
-     String EMAIL_NOT_NULL = "E-mail não pode ser nulo ou vazio.";
-     String PHONE_LENGTH = "O telefone deve ter exatamente 11 caracteres.";
-     String PHONE_NOT_NULL = "O telefone não pode ser nulo.";
+    String CPF_INVALID = "CPF invalid";
+     String CPF_NOT_NULL = "CPF cannot be null.";
+     String NAME_NOT_NULL = "Name cannot be null.";
+     String EMAIL_INVALID = "Email invalid";
+     String EMAIL_NOT_NULL = "Email cannot be null.";
+     String PHONE_LENGTH = "Phone lenght invalid.";
+     String PHONE_NOT_NULL = "Phone cannot be null.";
      String CUSTOMER_NOT_FOUND = "Customer not found.";
      String CUSTOMER_ALREADY_EXIST = "Customer already exists.";
      String CARD_NOT_FOUND = "Card not found.";
