@@ -107,7 +107,7 @@ public class AccountService {
 
         Address addressEntity =
                 customerEntity.getAddresses().stream().filter(ad -> ad.getId().equals(updateAccountRequest.idAddress()))
-                                .findFirst().orElseThrow(() -> new NotFoundException(ExceptionMessages.ADDRESS_NOT_NULL));
+                                .findFirst().orElseThrow(() -> new NotFoundException(ExceptionMessages.ADRESS_NOT_FOUND));
 
         Optional.ofNullable(updateAccountRequest.name()).ifPresent(customerEntity::setName);
         Optional.ofNullable(updateAccountRequest.email()).ifPresent(customerEntity::setEmail);
