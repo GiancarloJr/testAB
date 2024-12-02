@@ -1,5 +1,5 @@
 <h1 align="center">
-  Desafio Backend Pleno alt.bank
+  Desafio Backend Java Pleno alt.bank
 </h1>
 
 <p>Desenvolver uma API utilizando Java 17, Maven e, preferencialmente, Quarkus. A API deve entregar as funcionalidades descritas abaixo seguindo boas práticas de desenvolvimento, com camadas de persistência, modelo e serviço. A criação da estrutura de banco de dados é imprescindível (banco de dados relacional, preferencialmente MySQL).</p>
