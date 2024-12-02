@@ -4,8 +4,13 @@ import java.util.Random;
 
 public class CardUtils {
 
+    private CardUtils(){
+    }
+
+    static Random random = new Random();
+
     public static String generateCardNumber() {
-        Random random = new Random();
+
         StringBuilder cardNumber = new StringBuilder();
 
         for (int i = 0; i < 16; i++) {
@@ -16,7 +21,6 @@ public class CardUtils {
         return cardNumber.toString();
     }
     public static String generateCvvNumber() {
-        Random random = new Random();
         StringBuilder cvvNumber = new StringBuilder();
         for (int i = 0; i < 3; i++) {
             int digit = random.nextInt(10);

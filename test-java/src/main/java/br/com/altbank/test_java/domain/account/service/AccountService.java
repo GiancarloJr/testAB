@@ -10,7 +10,7 @@ import br.com.altbank.test_java.domain.customer.model.Customer;
 import br.com.altbank.test_java.domain.customer.repository.CustomerRepository;
 import br.com.altbank.test_java.domain.web.errors.exceptions.DataIntegrityException;
 import br.com.altbank.test_java.domain.web.errors.exceptions.NotFoundException;
-import br.com.altbank.test_java.domain.web.errors.validationMessage.ExceptionMessages;
+import br.com.altbank.test_java.domain.web.errors.validationmessage.ExceptionMessages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -56,15 +56,13 @@ public class AccountService {
         addressEntity = addressRepository.save(addressEntity);
         accountEntity = accountReposity.save(accountEntity);
 
-        CreatedAccount createdAccount = new CreatedAccount(accountEntity.getAccountNumber(),
+        return new CreatedAccount(accountEntity.getAccountNumber(),
                 customerEntity.getCpf(),
                 customerEntity.getName(),
                 customerEntity.getEmail(),
                 customerEntity.getPhone(),
                 addressEntity,
                 accountEntity.getStatus());
-
-        return createdAccount;
     }
 
     public ReturnAccount findByCpf(String cpf) {
@@ -73,7 +71,7 @@ public class AccountService {
                 () -> new NotFoundException(ExceptionMessages.CUSTOMER_NOT_FOUND)
         );
 
-        ReturnAccount returnAccount = new ReturnAccount(customerEntity.getCpf(),
+        return new ReturnAccount(customerEntity.getCpf(),
                 customerEntity.getName(),
                 customerEntity.getEmail(),
                 customerEntity.getPhone(),
@@ -81,8 +79,6 @@ public class AccountService {
                 customerEntity.getAccount().getStatus(),
                 customerEntity.getAddresses(),
                 customerEntity.getAccount().getCards());
-
-        return returnAccount;
     }
 
     public ResponseStatusAccount setStatusAccountByCpf(Integer accountNumber, RequestStatusAccount requestStatus) {
@@ -106,7 +102,7 @@ public class AccountService {
 
         Address addressEntity =
                 customerEntity.getAddresses().stream().filter(ad -> ad.getId().equals(updateAccountRequest.idAddress()))
-                                .findFirst().orElseThrow(() -> new NotFoundException(ExceptionMessages.ADRESS_NOT_FOUND));
+                                .findFirst().orElseThrow(() -> new NotFoundException(ExceptionMessages.ADDRESS_NOT_FOUND));
 
         Optional.ofNullable(updateAccountRequest.name()).ifPresent(customerEntity::setName);
         Optional.ofNullable(updateAccountRequest.email()).ifPresent(customerEntity::setEmail);

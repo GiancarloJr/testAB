@@ -10,7 +10,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "CARDS")
+@Table(name = "CARD")
 @Builder
 @Getter
 @Setter
@@ -34,7 +34,7 @@ public class Card {
     private CardType type;
 
     @Column(name = "CVV",nullable = false)
-    private String CVV;
+    private String cvv;
 
     @ManyToOne
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)

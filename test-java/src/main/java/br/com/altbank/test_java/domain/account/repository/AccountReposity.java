@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface AccountReposity extends JpaRepository<Account, Integer> {
+
         Optional<Account> findByAccountNumber(Integer accountNumber);
 
 }

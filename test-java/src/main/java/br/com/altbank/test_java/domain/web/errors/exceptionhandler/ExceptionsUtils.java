@@ -7,7 +7,11 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UtilsExceptions {
+public class ExceptionsUtils {
+
+    private ExceptionsUtils(){
+
+    }
 
     public static Map<String,Object> createMessageErrorValidation(MethodArgumentNotValidException exception, int codeError) {
 

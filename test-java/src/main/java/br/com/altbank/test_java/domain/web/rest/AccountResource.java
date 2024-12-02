@@ -25,7 +25,7 @@ public class AccountResource {
     }
 
     @PutMapping("/{cpf}")
-    public ResponseEntity<UpdatedAccount> update(@PathVariable("cpf") String cpf, @RequestBody UpdateAccount updateAccount) {
+    public ResponseEntity<UpdatedAccount> update(@PathVariable("cpf") String cpf,@Valid @RequestBody UpdateAccount updateAccount) {
         UpdatedAccount updatedAccount = accountService.updateAccount(cpf,updateAccount);
         return ResponseEntity.ok(updatedAccount);
     }

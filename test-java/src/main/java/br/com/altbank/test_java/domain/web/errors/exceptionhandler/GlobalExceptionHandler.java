@@ -15,9 +15,9 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({NotFoundException.class})
-    public ResponseEntity<Object> handleNotFoundException(NotFoundException exception) {
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException ex) {
 
-        Map<String, Object> errorResponse = UtilsExceptions.createMessageError(exception, HttpStatus.NOT_FOUND.value());
+        Map<String, Object> errorResponse = ExceptionsUtils.createMessageError(ex, HttpStatus.NOT_FOUND.value());
 
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
@@ -27,32 +27,35 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({DataIntegrityException.class})
     public ResponseEntity<Object> handleAlreadyExistException(DataIntegrityException exception) {
 
-        Map<String, Object> errorResponse = UtilsExceptions.createMessageError(exception, HttpStatus.INTERNAL_SERVER_ERROR.value());
+        Map<String, Object> errorResponse = ExceptionsUtils.createMessageError(exception, HttpStatus.BAD_REQUEST.value());
 
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(errorResponse);
     }
     @ExceptionHandler({MethodArgumentNotValidException.class})
-    public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException exception) {
+    public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException ex) {
 
-        Map<String, Object> errorResponse = UtilsExceptions.createMessageErrorValidation(exception, HttpStatus.BAD_REQUEST.value());
+        Map<String, Object> errorResponse = ExceptionsUtils.createMessageErrorValidation(ex, HttpStatus.BAD_REQUEST.value());
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(errorResponse);
     }
     @ExceptionHandler({RuntimeException.class})
-    public ResponseEntity<Object> handleRuntimeException(RuntimeException exception) {
+    public ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
+
+        Map<String, Object> errorResponse = ExceptionsUtils.createMessageError(ex, HttpStatus.INTERNAL_SERVER_ERROR.value());
+
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(exception.getMessage());
+                .body(errorResponse);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Object> handleJsonParseException(HttpMessageNotReadableException ex) {
 
-        Map<String, Object> errorResponse = UtilsExceptions.createMessageError(ex, HttpStatus.BAD_REQUEST.value());
+        Map<String, Object> errorResponse = ExceptionsUtils.createMessageError(ex, HttpStatus.BAD_REQUEST.value());
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)

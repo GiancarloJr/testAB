@@ -10,7 +10,7 @@ import br.com.altbank.test_java.domain.customer.model.Customer;
 import br.com.altbank.test_java.domain.customer.repository.CustomerRepository;
 import br.com.altbank.test_java.domain.web.errors.exceptions.DataIntegrityException;
 import br.com.altbank.test_java.domain.web.errors.exceptions.NotFoundException;
-import br.com.altbank.test_java.domain.web.errors.validationMessage.ExceptionMessages;
+import br.com.altbank.test_java.domain.web.errors.validationmessage.ExceptionMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -23,7 +23,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class AccountServiceTest {
+class AccountServiceTest {
     @InjectMocks
     private AccountService accountService;
     @Mock
@@ -32,7 +32,6 @@ public class AccountServiceTest {
     private CustomerRepository customerRepository;
     @Mock
     private AddressRepository addressRepository;
-
     private CreateAccount createAccount;
     private Customer customer;
     private Address address;

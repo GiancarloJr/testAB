@@ -1,6 +1,7 @@
 package br.com.altbank.test_java.domain.account.model.dto;
 
-import br.com.altbank.test_java.domain.web.errors.validationMessage.ExceptionMessages;
+
+import br.com.altbank.test_java.domain.web.errors.validationmessage.ExceptionMessages;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

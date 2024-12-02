@@ -1,6 +1,5 @@
 package br.com.altbank.test_java.domain.customer.repository;
 
-
 import br.com.altbank.test_java.domain.customer.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -14,7 +14,7 @@ import br.com.altbank.test_java.domain.card.utils.CardUtils;
 import br.com.altbank.test_java.domain.customer.model.Customer;
 import br.com.altbank.test_java.domain.customer.repository.CustomerRepository;
 import br.com.altbank.test_java.domain.web.errors.exceptions.NotFoundException;
-import br.com.altbank.test_java.domain.web.errors.validationMessage.ExceptionMessages;
+import br.com.altbank.test_java.domain.web.errors.validationmessage.ExceptionMessages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -46,20 +46,18 @@ public class CardService {
                 .account(customerEntity.getAccount())
                 .type(cardType)
                 .issueDate(LocalDate.now())
-                .CVV(CardUtils.generateCvvNumber())
+                .cvv(CardUtils.generateCvvNumber())
                 .expirationDate(LocalDate.now().plus(4, ChronoUnit.YEARS))
                 .build();
 
         cardEntity = cardRepository.save(cardEntity);
 
-        CreatedCard cardCreated = new CreatedCard(customerEntity.getAccount().getAccountNumber()
+        return new CreatedCard(customerEntity.getAccount().getAccountNumber()
                 , cardEntity.getCardNumber()
-                , cardEntity.getCVV()
+                , cardEntity.getCvv()
                 , cardEntity.getType()
                 , cardEntity.getCardClientName()
                 , cardEntity.getStatus());
-
-        return cardCreated;
     }
 
     public ReturnCardsAccount findCardsAccount(String cpf) {
@@ -70,11 +68,8 @@ public class CardService {
 
         List<Card> cardsAccount = customerEntity.getAccount().getCards();
 
-        ReturnCardsAccount returnCardsAccount =
-                new ReturnCardsAccount(customerEntity.getAccount().getAccountNumber(),
-                        cardsAccount);
-
-        return returnCardsAccount;
+        return new ReturnCardsAccount(customerEntity.getAccount().getAccountNumber(),
+                cardsAccount);
     }
 
     public CreatedCard reissueCard(String cpf) {
@@ -92,18 +87,16 @@ public class CardService {
         cardEntity.setCardNumber(CardUtils.generateCardNumber());
         cardEntity.setStatus(CardStatusEnum.DISABLED);
         cardEntity.setIssueDate(LocalDate.now());
-        cardEntity.setCVV(CardUtils.generateCvvNumber());
+        cardEntity.setCvv(CardUtils.generateCvvNumber());
 
         cardEntity = cardRepository.save(cardEntity);
 
-        CreatedCard cardCreated = new CreatedCard(customerEntity.getAccount().getAccountNumber()
+        return new CreatedCard(customerEntity.getAccount().getAccountNumber()
                 , cardEntity.getCardNumber()
-                , cardEntity.getCVV()
+                , cardEntity.getCvv()
                 , cardEntity.getType()
                 , cardEntity.getCardClientName()
                 , cardEntity.getStatus());
-
-        return cardCreated;
     }
 
     public ResponseStatusCard setStatusCard(Integer accountNumber, String cardNumber, RequestStatusCard statusCard) {
@@ -120,9 +113,7 @@ public class CardService {
 
         cardRepository.save(cardEntity);
 
-        ResponseStatusCard responseStatusCard = new ResponseStatusCard(cardNumber, cardEntity.getStatus());
-
-        return responseStatusCard;
+        return new ResponseStatusCard(cardNumber, cardEntity.getStatus());
     }
 
     private CardType setCardType(Customer customer) {
