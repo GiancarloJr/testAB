@@ -34,5 +34,5 @@ docker-compose up -d
 
 ## Diagrama de Entidade Relacionamento
 
-![Diagrama de Entidade Relacionamento](.github/images/diagrama.png)
+![Diagrama de Entidade Relacionamento](./images/diagrama.png)
 
